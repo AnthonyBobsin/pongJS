@@ -50,7 +50,7 @@ function Paddle(x, y, width, height) {
 function Ball(x, y) {
   this.x = x
   this.y = y
-  this.xSpeed = 4
+  this.xSpeed = 0
   this.ySpeed = 3
   this.radius = 5
 }
