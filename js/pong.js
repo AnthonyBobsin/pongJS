@@ -24,7 +24,7 @@ var render = function() {
 }
 
 var update = function() {
-  ball.update()
+  ball.update(player.paddle, computer.paddle)
 }
 
 var step = function() {
@@ -50,7 +50,7 @@ function Paddle(x, y, width, height) {
 function Ball(x, y) {
   this.x = x
   this.y = y
-  this.xSpeed = 0
+  this.xSpeed = 4
   this.ySpeed = 3
   this.radius = 5
 }
@@ -67,9 +67,22 @@ Ball.prototype.render = function() {
   context.fill()
 }
 
-Ball.prototype.update = function() {
+Ball.prototype.update = function(paddle1, paddle2) {
   this.x += this.xSpeed
   this.y += this.ySpeed
+  var topX = this.x - 5,
+      topY = this.y - 5
+      bottomX = this.x + 5,
+      bottomY = this.y + 5
+
+  if (this.x - 5 < 0) { // Hitting the left wall
+    this.x = 5
+    this.xSpeed = -this.xSpeed
+  } else if (this.x + 5 > 400) { // Hitting right wall
+    this.x = 395
+    this.xSpeed = -this.xSpeed
+  }
+
 }
 
 function Player() {
