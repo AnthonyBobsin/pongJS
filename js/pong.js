@@ -24,6 +24,7 @@ var render = function() {
 }
 
 var update = function() {
+  ball.update()
 }
 
 var step = function() {
@@ -50,7 +51,7 @@ function Ball(x, y) {
   this.x = x
   this.y = y
   this.xSpeed = 0
-  this.ySpeed = 0
+  this.ySpeed = 3
   this.radius = 5
 }
 
@@ -64,6 +65,11 @@ Ball.prototype.render = function() {
   context.arc(this.x, this.y, this.radius, Math.PI * 2, false)
   context.fillStyle = "#00abc0"
   context.fill()
+}
+
+Ball.prototype.update = function() {
+  this.x += this.xSpeed
+  this.y += this.ySpeed
 }
 
 function Player() {
